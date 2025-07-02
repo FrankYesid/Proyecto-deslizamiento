@@ -4,6 +4,10 @@ from typing import List
 class Settings(BaseSettings):
     PROJECT_NAME: str = "Satellite Image Classification"
     API_V1_STR: str = "/api/v1"
+
+    # API Credentials
+    CLIENT_ID: str
+    CLIENT_SECRET: str
     
     # Database settings
     DATABASE_URL: str = "sqlite:///./satellite.db"

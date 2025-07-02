@@ -1,17 +1,13 @@
-from fastapi import APIRouter, File, UploadFile, HTTPException
+from fastapi import UploadFile, HTTPException
 from fastapi.responses import JSONResponse
 from typing import Optional
 import io
 from PIL import Image
-import numpy as np
 from app.services.ml_inference import MLInferenceService
 from app.config.settings import settings
 
-router = APIRouter()
-
-@router.post("/classify")
-async def classify_image(
-    file: UploadFile = File(...),
+def handle_image_classification(
+    file: UploadFile,
     model_name: Optional[str] = None
 ):
     try:
@@ -23,7 +19,7 @@ async def classify_image(
             )
 
         # Read and process image
-        contents = await file.read()
+        contents = file.read()
         if len(contents) > settings.MAX_IMAGE_SIZE:
             raise HTTPException(
                 status_code=413,
