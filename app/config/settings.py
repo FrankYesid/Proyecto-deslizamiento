@@ -12,6 +12,9 @@ class Settings(BaseSettings):
     # Database settings
     DATABASE_URL: str = "sqlite:///./satellite.db"
     
+    # MLflow settings
+    MLFLOW_TRACKING_URI: str = "http://127.0.0.1:5000"
+
     # ML Model settings
     MODEL_DIR: str = "models"
     DEFAULT_MODEL: str = "satellite_classifier"
